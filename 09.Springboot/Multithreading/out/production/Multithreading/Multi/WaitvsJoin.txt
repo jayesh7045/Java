@@ -1,0 +1,57 @@
+Wait vs join
+
+Join is from thread CLass
+Wait is not from thread class
+wait comes from object class
+In Java multithreading, both `wait()` and `join()` are methods used for synchronization and coordination between threads,
+but they serve different purposes:
+
+1. **wait() Method**:
+   - The `wait()` method is a method defined in the `Object` class in Java.
+   - It is used for inter-thread communication and synchronization.
+   - When a thread calls `wait()` on an object, it releases the lock on that object and enters the waiting state
+   until another thread notifies it using the `notify()` or `notifyAll()` method on the same object.
+   - Typically, `wait()` is used within a synchronized block to release the lock temporarily, allowing other
+   threads to acquire the lock and perform their tasks.
+   - Example usage:
+     ```java
+     synchronized (sharedObject) {
+         while (conditionIsNotMet()) {
+             sharedObject.wait(); // Releases the lock and waits
+         }
+         // Proceed with the task
+     }
+     ```
+
+2. **join() Method**:
+   - The `join()` method is a method defined in the `Thread` class in Java.
+   - It is used to wait for a thread to terminate its execution.
+   - When a thread calls `join()` on another thread, it waits for that thread to complete before continuing its own execution.
+   - This is often used to ensure that a thread completes its task before the main thread or another dependent thread proceeds.
+   - Example usage:
+     ```java
+     Thread thread1 = new Thread(() -> {
+         // Task executed by thread1
+     });
+
+     Thread thread2 = new Thread(() -> {
+         // Task executed by thread2
+     });
+
+     thread1.start();
+     thread2.start();
+
+     try {
+         thread1.join(); // Waits for thread1 to complete
+         thread2.join(); // Waits for thread2 to complete
+     } catch (InterruptedException e) {
+         // Handle interrupted exception
+     }
+     // Proceed after both threads have completed
+     ```
+
+In summary, `wait()` is used for inter-thread communication and synchronization within synchronized blocks,
+while `join()` is used to wait for a specific thread to complete its execution before proceeding with other tasks.
+
+
+join internally used the wait only

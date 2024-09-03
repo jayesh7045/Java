@@ -1,0 +1,11 @@
+1. in the classc file we saw how we were calculating the factorial of all the numbers of the array.
+2. So we saw that we are running a loop for the 10 elements, and then for all those 10 elements we are calculating the
+value of the factorial.
+3. But What if we only want the output for 8 elements only.
+4. So we will need to manually write the 8 codes of line for that
+5. So to overcome this problem we came up with the knowledge to use the ExecutorsService in java
+6. ExecutorsService is used to achive multithreading in java
+7. ThreadFactory is also one more way to start all the threads at once
+8. In manually starting each thread, we are multiple times going to the cpu/os and this is a costly operation
+9. Thread factory is the abundaned(many) of threads
+
